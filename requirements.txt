@@ -1,0 +1,4 @@
+Flask==2.2.1
+jsonpatch==1.22
+jsonpointer==2.0
+requests==2.22.0
