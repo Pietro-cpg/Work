@@ -12,13 +12,12 @@ def main():
     data=len(ra2["items"])*[""]
     req=len(ra2["items"])*["https://kubernetes:6443/api/v1/namespaces/"]
     req1=len(ra2["items"])*[""]
-    valeur=0
-    valeurinv=0
+    valeur,valeurinv=0
     for b in range(len(ra2["items"])):
         data[b]=ra2["items"][b]["metadata"]["name"]
         req[b]= req[b] + data[b] + "/pods"
         req1[b]=requests.get(req[b],headers=headers,verify=False).json()
-        valeur=valeur+len(req1[b]["items"])
+        valeur+=len(req1[b]["items"])
     tab={}
     for a in range(valeur):
         tab[a]=None
@@ -41,7 +40,7 @@ def main():
             middle1.update(middle2)
             middle.update(middle1)
             tab[valeurinv]=middle
-            valeurinv=valeurinv+1 
+            valeurinv+=1
     return json.dumps(tab)
 app.run()
 
